@@ -1,6 +1,6 @@
 provider "aws" {
   region     = "ap-south-1"
-  profile    = "abhi"
+  profile    = "Abhilasha"
 }
 
 resource "aws_security_group" "allow_http" {
@@ -40,13 +40,13 @@ resource "aws_security_group" "allow_http" {
 resource "aws_instance" "myweb" {
 	ami		= "ami-005956c5f0f757d37"
 	instance_type	="t2.micro"
-	key_name          = "abhishek"
+	key_name          = "abhilashakey1"
   	security_groups   = [ "allow_http" ]
 
 	 connection {
     	type        = "ssh"
     	user        = "ec2-user"
-    	private_key = file("C:/Users/Abhishek/Downloads/abhishek.pem")
+    	private_key = file("C:/Users/Abhilasha/Downloads/abhilashakey1.pem")
     	host        = "${aws_instance.myweb.public_ip}"
   	}
   
@@ -59,7 +59,7 @@ resource "aws_instance" "myweb" {
  	 }
 
 	tags = {
-		Name = "Abhishekos"
+		Name = "Abhilasha"
 	}
 }
 
@@ -86,7 +86,7 @@ resource "aws_s3_bucket" "myuniquebucket1227" {
 resource "aws_s3_bucket_object" "s3object" {
   bucket = "${aws_s3_bucket.myuniquebucket1227.id}"
   key    = "1076883.jpg"
-  source = "C:/Users/Abhishek/Downloads/1076883.jpg"
+  source = "C:/Users/Abhilasha/Downloads/1076883.jpg"
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
@@ -169,7 +169,7 @@ resource "null_resource" "null1"  {
   connection {
     type     = "ssh"
     user     = "ec2-user"
-    private_key = file("C:/Users/Abhishek/Downloads/abhishek.pem")
+    private_key = file("C:/Users/Abhilasha/Downloads/abhilashakey1.pem")
     host     = aws_instance.myweb.public_ip
   }
 
@@ -178,7 +178,7 @@ resource "null_resource" "null1"  {
       "sudo mkfs.ext4  /dev/xvdf",
       "sudo mount  /dev/xvdf  /var/www/html",
       "sudo rm -rf /var/www/html/*",
-      "sudo git clone https://github.com/aniketambasta/aws_task_1.git /var/www/html/"
+      "sudo git clone https://github.com/abhilasha188/AWS.git"
     ]
   }
 }
